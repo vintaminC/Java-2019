@@ -1,0 +1,105 @@
+//Main
+package com.mycompany.baitap1;
+
+import java.util.Scanner;
+
+
+public class Menu {
+    public static void main(String[] args) {
+        MaTran m=null;
+        while(true){
+            System.out.println("Menu");
+            System.out.println("1. Nhap ma tran");
+            System.out.println("2. In ma tran");
+            System.out.println("3. Ma tran chuyen vi");
+            System.out.println("4. Tong cac hang");
+            System.out.println("0. Thoat");
+            System.out.print("Moi ban chon: ");
+            int chon;
+            Scanner in = new Scanner(System.in);
+            chon = Integer.parseInt(in.nextLine());
+            switch (chon) {
+                case 0:
+                    System.out.println("Tam biet!");
+                    System.exit(0);
+                    break;
+                case 1: 
+                    System.out.print("n= ");
+                    int n= in.nextInt();
+                    m=new MaTran(n);
+                    m.input();
+                    break;
+                case 2: 
+                    m.out();
+                    break;
+                case 3: 
+                    m.outChuyenVi();
+                    break;
+                case 4:
+                    m.outTongHang();
+                    break;
+                default:
+                    System.out.println("Moi ban chon lai!");;
+            }
+        }
+    }
+}
+//Ma Trận
+
+package com.mycompany.baitap1;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MaTran {
+    private int[][] a;
+    
+    public MaTran(int n){
+        a = new int[n][n];
+    }
+    
+    public void input(){
+        Scanner in = new Scanner(System.in);
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length; j++) {
+                System.out.print("Nhap "+i+" "+j+": ");
+                a[i][j]=in.nextInt();
+            }
+        }
+    }
+    
+    public void out(){
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(Arrays.toString(a[i]));
+        }
+    }
+    private int[][] ChuyenVi(){
+        int[][] t = new int[a.length][a.length];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length; j++) {
+                t[j][i] = a[i][j];
+            }
+        }
+        return t;
+    }
+    public void outChuyenVi(){
+        int[][] t = ChuyenVi();
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(Arrays.toString(t[i]));
+        }
+    }
+    private int[] TongHang(){
+        int[] t=new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            t[i]=0;
+            for (int j = 0; j < a.length; j++) {
+                t[i] += a[i][j];
+            }
+        }
+        return t;
+    }
+    public void outTongHang(){
+        int[] t=TongHang();
+        System.out.println(Arrays.toString(t));
+    }
+}
