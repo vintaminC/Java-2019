@@ -1,0 +1,68 @@
+//Chương trình Main
+package vidun8;
+import java.util.Scanner;
+
+public class Menu {
+    public static void main(String[] args) {
+        Xulyxau xau = new Xulyxau();
+        System.out.println("1. Nhap vao 2 so nguyen");
+        System.out.println("2. Dua ra SNT trong khoang 2 so do");
+        System.out.println("3. BCNN");
+        System.out.println("4. Nhap vao 1 day so");
+        System.out.println("5. Tong");
+        System.out.println("6. Tong SNT");
+        System.out.println("7. Da sap xep hay lon xon");
+        System.out.println("8. Nhap vao 1 xau");
+        System.out.println("9. Kiem tra co phai la dien thoai");
+        System.out.println("10. Kiem tra co phai bien so xe: 2 so 1 chu 5 so");
+        int chon;
+           Scanner in = new Scanner(System.in);
+           chon = Integer.parseInt(in.nextLine());
+           switch(chon){
+               case 0:
+                   System.exit(0);
+                   break;
+               case 8:
+                   xau.nhapxau();
+                   break;
+               case 9:
+                   if(xau.ktraSDT())
+                       System.out.println("Day la SDT");
+                   else System.out.println("Day khong phai SDT");
+                   break;
+               case 10:
+                   if(xau.ktraBSX())
+                       System.out.println("Day la BSX");
+                   else System.out.println("Day khong phai");
+                   break;
+               default:
+                   System.out.println("Chon lai");
+           }
+    }
+}
+//Xử Lý Xâu
+package vidun8;
+
+import java.util.Scanner;
+
+public class Xulyxau {
+    private String xau;
+    public void nhapxau(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Nhap xau: ");
+        xau = in.nextLine();
+    }
+    public boolean ktraSDT(){
+        String re="^0\\d{9}$";
+        if(xau.matches(re))
+            return true;
+        return false;
+    }
+    public boolean ktraBSX(){
+        String re="^d{2}[A-Z]{1}\\d{5}$";
+        if(xau.matches(re))
+            return true;
+        return false;
+    }
+    
+}
